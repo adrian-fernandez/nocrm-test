@@ -12,6 +12,6 @@ class TestsController < ActionController::Base
 		Rails.logger.fatal "**************************************"
 		Rails.logger.fatal "**************************************"
 
-		render nothing: true
+		render text: "hook logged!", layout: false
 	end
 end
