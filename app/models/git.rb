@@ -14,7 +14,7 @@ class Git
 	# 		  }
 
 	def initialize(data)
-		path = [PROJECTS_PATH, data[:project_name], data[:branch_name].join('/')
+		path = [PROJECTS_PATH, data[:project_name], data[:branch_name]].join('/')
 		self.local_path = path
 		FileUtils.rm_rf(path) rescue nil
 		FileUtils.mkdir_p(path)
