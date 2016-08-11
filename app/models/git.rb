@@ -18,7 +18,6 @@ class Git
 		self.local_path = path
 		FileUtils.rm_rf(path) rescue nil
 		FileUtils.mkdir_p(path)
-		FileUtils.mkdir_p(get_output_path())
 
 		if data[:private]
 			Rails.logger.fatal "*** Private repository, adding credentials"
@@ -29,6 +28,8 @@ class Git
 		Rails.logger.fatal "*** Cloning repository: "
 		Rails.logger.fatal "git clone -b #{data[:branch_name]} #{data[:repository_url]} #{path}"
 		system("git clone -b #{data[:branch_name]} #{data[:repository_url]} #{path}", :out => ['/tmp/log', 'a'], :err => ['/tmp/log', 'a'])
+
+		FileUtils.mkdir_p(get_output_path())
 	end
 
 	def get_output_path
