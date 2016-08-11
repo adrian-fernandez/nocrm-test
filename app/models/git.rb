@@ -21,7 +21,9 @@ class Git
 		FileUtils.mkdir_p(get_output_path())
 
 		if data[:private]
+			Rails.logger.fatal "*** Private repository, adding credentials"
 			data[:repository_url].gsub!("https://github.com", "https://#{GITHUB[:username]}:#{GITHUB[:password]}@github.com")
+			Rails.logger.fatal "*** repository_url: #{data[:repository_url]}"
 		end
 
 		Rails.logger.fatal "*** Cloning repository: "
