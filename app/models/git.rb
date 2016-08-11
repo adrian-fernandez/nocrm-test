@@ -25,8 +25,8 @@ class Git
 		end
 
 		Rails.logger.fatal "*** Cloning repository: "
-		Rails.logger.fatal "git clone -b #{data[:branch_name]} #{data[:repository]} #{path}"
-		system("git clone -b #{data[:branch_name]} #{data[:repository]} #{path}")
+		Rails.logger.fatal "git clone -b #{data[:branch_name]} #{data[:repository_url]} #{path}"
+		system("git clone -b #{data[:branch_name]} #{data[:repository_url]} #{path}")
 	end
 
 	def get_output_path
