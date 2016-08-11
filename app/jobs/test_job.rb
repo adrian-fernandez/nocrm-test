@@ -20,4 +20,4 @@ class TestJob < ActiveJob::Base
 
 #    TestMailer.summary_email(data[:recipients], data[:commits], data[:project_name], data[:branch_name], output_test_file)
   end
-end
+end 
