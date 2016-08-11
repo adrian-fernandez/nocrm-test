@@ -5,14 +5,26 @@ class Git
 
 	attr_accessor :local_path
 
-	def initialize(_repository_url, _project_name, _branch_name)
-		path = [PROJECTS_PATH, _project_name, _branch_name].join('/')
+	# data = {
+	# =>  		repository_url string Full URL of repository
+	# =>  		project_name string
+	# =>  		branch_name string
+	# =>  		recipients array<string>
+	# =>  		private boolean
+	# 		  }
+
+	def initialize(data)
+		path = [PROJECTS_PATH, data[:project_name], data[:branch_name].join('/')
 		self.local_path = path
 		FileUtils.rm_rf(path) rescue nil
 		FileUtils.mkdir_p(path)
 		FileUtils.mkdir_p(get_output_path())
 
-		system("git clone -b #{_branch_name} #{_repository_url} #{path}")
+		if data[:private]
+			data[:repository_url].gsub!("https://github.com", "https://#{GITHUB[:username]}:#{GITHUB[:password]}@github.com")
+		end
+
+		system("git clone -b #{data[:branch_name}]} #{data[:repository]} #{path}")
 	end
 
 	def get_output_path
