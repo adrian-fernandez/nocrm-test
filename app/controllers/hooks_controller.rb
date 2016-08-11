@@ -10,7 +10,11 @@ class HooksController < ActionController::Base
 		git_url      = params["repository"]["html_url"] + ".git"
 		project_name = params["repository"]["name"]
 		private_repo = params["repository"]["private"]
-		recipients   = commits.map(&:email)
+		recipients   = []
+
+		commits.each do |commit|
+			recipients << commit["committer"]["email"]
+		end
 
 		Rails.logger.fatal "*** #{Time.now.to_s} HOOK"
 		Rails.logger.fatal "**************************************"
