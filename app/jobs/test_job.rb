@@ -13,9 +13,13 @@ class TestJob < ActiveJob::Base
 
     output_test_file = "#{g.get_output_path()}/output.html"
     
-    Rails.logger.fatal "*** Launching tests:"
-    Rails.logger.fatal "#{g.local_path} bundle exec rspec spec --format h > #{output_test_file}"
-    system("#{g.local_path} bundle exec rspec spec --format h > #{output_test_file}", :out => ['/tmp/log', 'a'], :err => ['/tmp/log', 'a'])
+    Rails.logger.fatal "*** Launching tests from #{g.local_path}:"
+    Rails.logger.fatal "bundle exec rspec spec --format h > #{output_test_file}"
+
+    cmd = "bundle exec rspec spec --format h > #{output_test_file}"
+    Dir.chdir(g.local_path){
+      %s[#{cmd}]
+    }
 
 #    TestMailer.summary_email(data[:recipients], data[:commits], data[:project_name], data[:branch_name], output_test_file)
   end
