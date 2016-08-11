@@ -20,13 +20,10 @@ class HooksController < ActionController::Base
 		Rails.logger.fatal "**************************************"
 		Rails.logger.fatal "**************************************"
 
-	# data = {
-	# =>  		repository_url string Full URL of repository
-	# =>  		project_name string
-	# =>  		branch_name string
-	# =>  		recipients array<string>
-	# =>  		private boolean
-	# 		  }
+		unless AUTHORIZED_PROJECTS.include?(project_name)
+			Rails.logger.fatal " ERROR! Application not authorized"
+			render text: "Unauthorized application", layout: false, status: :unauthorized
+		end
 
 		TestJob.perform_later({ repository_url: git_url,
 								project_name: project_name,
