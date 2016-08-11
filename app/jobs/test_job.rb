@@ -12,6 +12,9 @@ class TestJob < ActiveJob::Base
     g = Git.new(data)
 
     output_test_file = "#{g.get_output_path()}/output.html"
+    
+    Rails.logger.fatal "*** Launching tests:"
+    Rails.logger.fatal "#{g.local_path} bundle exec rspec spec --format h > #{output_test_file}"
     system("#{g.local_path} bundle exec rspec spec --format h > #{output_test_file}")
 
 #    TestMailer.summary_email(data[:recipients], data[:commits], data[:project_name], data[:branch_name], output_test_file)
