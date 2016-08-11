@@ -33,4 +33,4 @@ class Git
 		[self.local_path, TEST_RESULT_FOLDER].join('/')
 	end
 
-end 
+end
