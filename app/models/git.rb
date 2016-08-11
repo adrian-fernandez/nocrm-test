@@ -24,7 +24,7 @@ class Git
 			data[:repository_url].gsub!("https://github.com", "https://#{GITHUB[:username]}:#{GITHUB[:password]}@github.com")
 		end
 
-		system("git clone -b #{data[:branch_name}]} #{data[:repository]} #{path}")
+		system("git clone -b #{data[:branch_name]} #{data[:repository]} #{path}")
 	end
 
 	def get_output_path
