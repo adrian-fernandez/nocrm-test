@@ -12,7 +12,7 @@ class Git
 	# =>  		recipients array<string>
 	# =>  		private boolean
 	# 		  }
-
+ 
 	def initialize(data)
 		path = [PROJECTS_PATH, data[:project_name], data[:branch_name]].join('/')
 		self.local_path = path
