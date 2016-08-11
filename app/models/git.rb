@@ -17,7 +17,7 @@ class Git
 		path = [PROJECTS_PATH, data[:project_name], data[:branch_name]].join('/')
 		self.local_path = path
 		FileUtils.rm_rf(path) rescue nil
-		FileUtils.mkdir_p(path)
+#		FileUtils.mkdir_p(path)
 
 		if data[:private]
 			Rails.logger.fatal "*** Private repository, adding credentials"
@@ -35,5 +35,5 @@ class Git
 	def get_output_path
 		[self.local_path, TEST_RESULT_FOLDER].join('/')
 	end
-
+ 
 end
