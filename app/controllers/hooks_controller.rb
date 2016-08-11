@@ -3,7 +3,7 @@ class HooksController < ActionController::Base
 	def index
 		render text: "it works!", layout: false
 	end
-
+ 
 	def hook
 		branch       = params["ref"].split("/").last
 		commits      = params["commits"]
