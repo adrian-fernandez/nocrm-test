@@ -33,7 +33,8 @@ class HooksController < ActionController::Base
 								project_name: project_name,
 								branch_name: branch,
 								private: private_repo,
-								recipients: recipients
+								recipients: recipients,
+								commits: commits
 			   				  })
 
 		render text: "hook logged!", layout: false

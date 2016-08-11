@@ -24,6 +24,8 @@ class Git
 			data[:repository_url].gsub!("https://github.com", "https://#{GITHUB[:username]}:#{GITHUB[:password]}@github.com")
 		end
 
+		Rails.logger.fatal "*** Cloning repository: "
+		Rails.logger.fatal "git clone -b #{data[:branch_name]} #{data[:repository]} #{path}"
 		system("git clone -b #{data[:branch_name]} #{data[:repository]} #{path}")
 	end
 
