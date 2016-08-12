@@ -5,7 +5,7 @@ class HooksController < ActionController::Base
 	end
  
 	def hook
-		branch       = params["ref"].split("/").last
+		branch       = params["ref"].split("/").last rescue 'master'
 		commits      = params["commits"]
 		git_url      = params["repository"]["html_url"] + ".git"
 		project_name = params["repository"]["name"]
