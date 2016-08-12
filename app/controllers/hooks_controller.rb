@@ -12,8 +12,13 @@ class HooksController < ActionController::Base
 		private_repo = params["repository"]["private"]
 		recipients   = []
 
-		commits.each do |commit|
-			recipients << commit["committer"]["email"]
+		if commits
+			commits.each do |commit|
+				recipients << commit["committer"]["email"]
+			end
+		else
+			render text: "hook logged!", layout: false
+			return
 		end
 
 		Rails.logger.fatal "*** #{Time.now.to_s} HOOK"
