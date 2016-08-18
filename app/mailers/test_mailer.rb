@@ -4,6 +4,12 @@ class TestMailer < ActionMailer::Base
 		@content = File.read(attach)
 		@commits = commits
 
+		Rails.logger.fatal "*** #{Time.now.to_s} Sending e-mail:"
+		Rails.logger.fatal "  * Recipients: #{recipients.inspect}"
+		Rails.logger.fatal "  * Commits: #{commits.inspect}"
+		Rails.logger.fatal "  * Project_name: #{project_name}"
+		Rails.logger.fatal "  * branch: #{branch}"
+
 		mail(to: recipients, subject: "[TEST] Results for '#{project_name}' / '#{branch}'")
 	end
 

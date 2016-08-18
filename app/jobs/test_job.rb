@@ -18,6 +18,6 @@ class TestJob < ActiveJob::Base
 
     system("bundle exec rspec #{g.local_path} --format h > #{output_test_file}", :out => ['/tmp/log', 'a'], :err => ['/tmp/log', 'a'])
 
-    TestMailer.summary_email(data[:recipients], data[:commits], data[:project_name], data[:branch_name], output_test_file)
+    TestMailer.summary_email(data[:recipients], data[:commits], data[:project_name], data[:branch_name], output_test_file).deliver
   end
 end 
