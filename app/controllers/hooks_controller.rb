@@ -1,5 +1,4 @@
 class HooksController < ActionController::Base
-
 	def index
 		render text: "it works!", layout: false
 	end
