@@ -3,7 +3,13 @@
 	<% @commits.each do |commit| %>
 		<p>
 			<span><strong>ID: </strong><a href="<%=commit['url']%>"><%=commit['tree_id']%></a></span>
+		</p>
+
+		<p>
 			<span><strong>Message: </strong><%= commit['message'] %></span>
+		</p>
+
+		<p>
 			<span><strong>Author: </strong><%= commit['author']['name'] %></span>
 		</p>
 	<% end %>
